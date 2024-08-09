@@ -40,3 +40,16 @@ In today's fast-paced world, event organizers face numerous challenges, from man
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/Sibongile-Nhlema/EventEase.git
+
+💻 Usage
+- To update later
+
+🤝 Contributing
+-
+
+📜 License
+-
+
+✉️ Contact
+- 
+
