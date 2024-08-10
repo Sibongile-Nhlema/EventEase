@@ -1,6 +1,9 @@
 .home-page {
     text-align: center;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
   }
   
   .home-header {
