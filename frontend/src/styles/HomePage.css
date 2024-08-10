@@ -1,0 +1,52 @@
+.home-page {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .home-header {
+    background: #f8f9fa;
+    padding: 40px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .home-header h1 {
+    margin: 0;
+    font-size: 2.5em;
+  }
+  
+  .home-header p {
+    font-size: 1.2em;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    color: #fff;
+    background: #007bff;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 20px;
+  }
+  
+  .home-features {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .feature {
+    width: 30%;
+    padding: 20px;
+    background: #e9ecef;
+    border-radius: 8px;
+    margin: 10px;
+  }
+  
+  .home-footer {
+    margin-top: 20px;
+    padding: 10px;
+    background: #f1f1f1;
+  }
+  
