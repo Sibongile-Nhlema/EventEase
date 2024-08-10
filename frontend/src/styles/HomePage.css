@@ -10,7 +10,6 @@
     background: #f8f9fa;
     padding: 40px;
     border-radius: 8px;
-    margin-bottom: 20px;
   }
   
   .home-header h1 {
@@ -48,7 +47,6 @@
   }
   
   .home-footer {
-    margin-top: 20px;
     padding: 10px;
     background: #f1f1f1;
   }
