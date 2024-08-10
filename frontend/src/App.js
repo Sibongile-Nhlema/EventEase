@@ -6,6 +6,8 @@ import HomePage from './pages/HomePage';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 
 function App() {
   return (

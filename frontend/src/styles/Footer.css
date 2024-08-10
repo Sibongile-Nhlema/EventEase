@@ -1,0 +1,27 @@
+.home-footer {
+  background: #f1f1f1;
+  text-align: center;
+  padding: 20px;
+  flex-shrink: 0;
+}
+
+.footer-text {
+  margin: 0;
+  font-size: 1em;
+}
+
+.footer-social-links {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.footer-social-links a {
+  color: #333;
+  font-size: 1.5em;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.footer-social-links a:hover {
+  color: #007bff;
+}

@@ -6,6 +6,7 @@
     "concurrently": "^8.2.2"
   },
   "dependencies": {
+    "bootstrap-icons": "^1.11.3",
     "lottie-react": "^2.4.0"
   }
 }
