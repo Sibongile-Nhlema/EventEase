@@ -1,14 +1,50 @@
 .about-us-page {
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .about-header {
-    margin-bottom: 30px;
-  }
-  
-  .about-details h2 {
-    margin-top: 20px;
-    color: #333;
-  }
-  
+  padding: 20px;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.about-header {
+  margin-bottom: 30px;
+}
+
+.about-details h2 {
+  margin-top: 20px;
+  color: #333;
+}
+
+.team-section {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.team-member {
+  text-align: center;
+  max-width: 200px;
+}
+
+.team-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid #007bff; /* Border color */
+  object-fit: cover;
+}
+
+.social-media-links {
+  margin-top: 10px;
+}
+
+.social-media-links a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #007bff; /* Link color */
+}
+
+.social-media-links a:hover {
+  text-decoration: underline;
+}

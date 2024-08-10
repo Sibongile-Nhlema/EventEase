@@ -24,14 +24,30 @@ html, body, #root {
 
 .contact-us-page {
   padding: 20px;
-  text-align: center;
+  display: flex; /* Use flexbox for layout */
+  align-items: flex-start; /* Align items to the start of the container */
+  gap: 20px; /* Space between video and form */
+  max-width: 1200px; /* Adjust as needed */
   margin: 0 auto;
-  max-width: 600px; /* Prevents horizontal scrolling by limiting width */
-  flex: 1; /* Ensures it takes up available vertical space */
 }
 
-.contact-header {
-  margin-bottom: 30px;
+.contact-video {
+  flex: 1;
+}
+
+.contact-video video {
+  width: 100%;
+  height: auto; /* Ensure the video scales correctly */
+  max-height: 500px; /* Adjust as needed */
+  object-fit: cover; /* Ensures the video fits within its container */
+}
+
+.contact-form {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between form elements */
 }
 
 .contact-form .form-group {
@@ -71,3 +87,4 @@ html, body, #root {
   padding: 10px;
   flex-shrink: 0;
 }
+

@@ -21,13 +21,54 @@ const AboutUs = () => {
           technology.
         </p>
         <h2>Our Team</h2>
-        <p>
-          We are a team of passionate professionals committed to bringing the
-          best tools and services to the event management industry.
-        </p>
+        <div className="team-section">
+          <div className="team-member">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Brivan Karani"
+              className="team-image"
+            />
+            <h3>Brivan Karani</h3>
+            <p>Short description about Brivan Karani.</p>
+            <div className="social-media-links">
+              <a href="https://twitter.com/member1" target="_blank" rel="noopener noreferrer">Twitter</a>
+              <a href="https://linkedin.com/in/member1" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="https://github.com/member1" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          </div>
+          <div className="team-member">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Team Member 2"
+              className="team-image"
+            />
+            <h3>Team Member 2</h3>
+            <p>Short description about Team Member 2.</p>
+            <div className="social-media-links">
+              <a href="https://twitter.com/member2" target="_blank" rel="noopener noreferrer">Twitter</a>
+              <a href="https://linkedin.com/in/member2" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="https://github.com/member2" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          </div>
+          <div className="team-member">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Sibongile Nhlema"
+              className="team-image"
+            />
+            <h3>Sibongile Nhlema</h3>
+            <p>Short description about Sibongile Nhlema.</p>
+            <div className="social-media-links">
+              <a href="https://twitter.com/member3" target="_blank" rel="noopener noreferrer">Twitter</a>
+              <a href="https://linkedin.com/in/member3" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="https://github.com/member3" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );
 };
 
 export default AboutUs;
+
