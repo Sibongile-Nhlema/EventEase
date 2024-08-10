@@ -1,6 +1,5 @@
 import React from 'react';
 import '../styles/HomePage.css';
-import Footer from '../components/Footer';
 
 const HomePage = () => {
   return (
@@ -24,7 +23,6 @@ const HomePage = () => {
           <p>Keep participants informed with automated updates.</p>
         </div>
       </section>
-      <Footer />
     </div>
   );
 };
