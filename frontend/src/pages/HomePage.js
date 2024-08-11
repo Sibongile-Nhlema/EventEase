@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/HomePage.css';
 import registrationVideo from '../videos/registration.mp4';
 import analyticsVideo from '../videos/analytics.mp4';
@@ -10,7 +11,7 @@ const HomePage = () => {
       <header className="home-header">
         <h1>Welcome to EventEase</h1>
         <p>Your ultimate tool for seamless event management.</p>
-        <a href="/events" className="cta-button">Get Started</a>
+        <Link to="/GetStarted" className="cta-button">Get Started</Link> {/* Use Link instead of a */}
       </header>
       <section className="home-features">
         <div className="feature">

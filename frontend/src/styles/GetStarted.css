@@ -1,0 +1,29 @@
+.get-started-page {
+  padding: 20px;
+  text-align: center;
+}
+
+.get-started-header {
+  margin-bottom: 30px;
+}
+
+.get-started-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Adjust this value to increase/decrease the space between the buttons */
+  margin-top: 20px;
+}
+
+.cta-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 5px;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}
