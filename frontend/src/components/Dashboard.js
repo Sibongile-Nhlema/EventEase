@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/Dashboard.css';
 import AdminHeader from '../components/AdminHeader';
-import Sidebar from '../components/Sidebar'; // Make sure to import the Sidebar
+import Sidebar from '../components/Sidebar'; 
 
 const Dashboard = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -17,8 +17,6 @@ const Dashboard = () => {
       <div className="dashboard-content">
         <AdminHeader onToggleDarkMode={toggleDarkMode} />
         <div className="dashboard-main">
-          <h1>Admin Dashboard</h1>
-          <p>Welcome to the organizer admin panel!</p>
 
           <div className="dashboard-grid">
             {/* Number of Events and Participants */}
