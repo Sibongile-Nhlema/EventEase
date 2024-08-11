@@ -5,7 +5,8 @@ import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
-import GetStarted from './pages/GetStarted'; // Import the GetStarted component
+import GetStarted from './pages/GetStarted';
+import AdminPanel from './pages/AdminPanel'; // Import the AdminPanel component
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
@@ -19,7 +20,8 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/contactUs" element={<ContactUs />} />
-            <Route path="/getstarted" element={<GetStarted />} /> {/* Add the route for GetStarted */}
+            <Route path="/getstarted" element={<GetStarted />} />
+            <Route path="/admin" element={<AdminPanel />} /> {/* Add the route for AdminPanel */}
           </Routes>
         </div>
         <Footer />
