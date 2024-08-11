@@ -11,7 +11,7 @@ const HomePage = () => {
       <header className="home-header">
         <h1>Welcome to EventEase</h1>
         <p>Your ultimate tool for seamless event management.</p>
-        <Link to="/GetStarted" className="cta-button">Get Started</Link> {/* Use Link instead of a */}
+        <Link to="/GetStarted" className="cta-button">Get Started</Link>
       </header>
       <section className="home-features">
         <div className="feature">
