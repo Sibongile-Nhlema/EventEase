@@ -7,6 +7,7 @@ import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import EventPage from './pages/EventPage';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/contactUs" element={<ContactUs />} />
+            <Route path="/EventPage" element={<EventPage />} />
           </Routes>
         </div>
         <Footer />
