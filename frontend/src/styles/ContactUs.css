@@ -1,0 +1,90 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  flex-shrink: 0;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-us-page {
+  padding: 20px;
+  display: flex; /* Use flexbox for layout */
+  align-items: flex-start; /* Align items to the start of the container */
+  gap: 20px; /* Space between video and form */
+  max-width: 1200px; /* Adjust as needed */
+  margin: 0 auto;
+}
+
+.contact-video {
+  flex: 1;
+}
+
+.contact-video video {
+  width: 100%;
+  height: auto; /* Ensure the video scales correctly */
+  max-height: 500px; /* Adjust as needed */
+  object-fit: cover; /* Ensures the video fits within its container */
+}
+
+.contact-form {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between form elements */
+}
+
+.contact-form .form-group {
+  margin-bottom: 15px;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensures padding doesn't cause overflow */
+}
+
+.contact-form button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background-color: #555;
+}
+
+.home-footer {
+  background-color: #f1f1f1;
+  text-align: center;
+  padding: 10px;
+  flex-shrink: 0;
+}
+
