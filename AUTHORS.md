@@ -9,8 +9,8 @@ This project is developed and maintained by the following contributors:
 
 ## 👨‍💻 **Brivan Karani**
 - **Role:** Junior Software Engineer
-- **GitHub:** [Brivan-Karani](https://github.com/Brivan-Karani)
-- **Email:** brivan.karani@example.com
+- **GitHub:** [Brivan-Karani](https://github.com/brivan1)
+- **Email:** bkryan.bk@gmail.com
 
 ## 👩‍💻 **Syanda Mntambo**
 - **Role:** Automation Engineer
