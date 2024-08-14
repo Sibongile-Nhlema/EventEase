@@ -2,10 +2,15 @@
 
 CREATE TABLE Events(
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	event_name VARCHAR(100) NOT NULL,
-	start_time DATETIME NOT NULL,
-        end_time DATETIME NOT NULL,
+	eventname VARCHAR(100) NOT NULL,
+
+	startdate DATE NOT NULL,
+	enddate DATE NOT NULL,
+
+	startime DATETIME NOT NULL,
+    endtime DATETIME NOT NULL,
+
 	location VARCHAR(256),
-	decscription TEXT,
+	description TEXT,
 	maximum-participants INT,
 );
