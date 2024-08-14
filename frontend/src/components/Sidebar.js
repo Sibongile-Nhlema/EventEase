@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/Sidebar.css';
 import logo from '../assets/logo.png';
 
@@ -11,12 +12,12 @@ const Sidebar = ({ isOpen, onToggleSidebar }) => {
           <button className="close-btn" onClick={onToggleSidebar}>&times;</button>
         </div>
         <ul>
-          <li><a href="/dashboard">Dashboard</a></li>
-          <li><a href="/events">Events</a></li>
-          <li><a href="/participants">Participants</a></li>
-          <li><a href="/notifications">Notifications</a></li>
-          <li><a href="/settings">Settings</a></li>
-          <li><a href="/signout">Sign Out</a></li>
+          <li><Link to="/admin/dashboard">Dashboard</Link></li>
+          <li><Link to="/admin/events">Events</Link></li>
+          <li><Link to="/admin/participants">Participants</Link></li>
+          <li><Link to="/admin/notifications">Notifications</Link></li>
+          <li><Link to="/admin/settings">Settings</Link></li>
+          <li><Link to="/admin/signout">Sign Out</Link></li>
         </ul>
       </div>
       {!isOpen && (
@@ -29,3 +30,4 @@ const Sidebar = ({ isOpen, onToggleSidebar }) => {
 };
 
 export default Sidebar;
+

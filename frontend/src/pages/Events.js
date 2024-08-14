@@ -3,7 +3,8 @@ import React from 'react';
 const Events = () => {
   return (
     <div className="page-content">
-      <h1>Welcome to Events Page</h1>
+      <h1>Events</h1>
+      <p>Here you can manage all the events.</p>
     </div>
   );
 };

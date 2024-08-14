@@ -3,7 +3,8 @@ import React from 'react';
 const Participants = () => {
   return (
     <div className="page-content">
-      <h1>Welcome to Participants Page</h1>
+      <h1>Participants</h1>
+      <p>Manage the participants of your events here.</p>
     </div>
   );
 };
