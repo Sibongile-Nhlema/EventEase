@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/Header'; // Adjust the path as needed
+import Header from '../components/Header';
 import '../styles/AboutUs.css';
 
 const AboutUs = () => {

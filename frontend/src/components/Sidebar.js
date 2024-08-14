@@ -9,7 +9,7 @@ const Sidebar = ({ isOpen, onToggleSidebar }) => {
       <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
         <div className="sidebar-header">
           <img src={logo} alt="EventEase Logo" className="logo" onClick={onToggleSidebar} />
-          <button className="close-btn" onClick={onToggleSidebar}>&times;</button>
+          <h2>EventEase</h2>
         </div>
         <ul>
           <li><Link to="/admin/dashboard">Dashboard</Link></li>
@@ -22,7 +22,7 @@ const Sidebar = ({ isOpen, onToggleSidebar }) => {
       </div>
       {!isOpen && (
         <button className="sidebar-open-btn" onClick={onToggleSidebar}>
-          ☰
+          <img src={logo} alt="EventEase Logo" className="logo" />
         </button>
       )}
     </>

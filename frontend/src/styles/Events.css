@@ -1,62 +1,229 @@
+/* Main container for the events page */
 .events-page {
-    padding: 20px;
-  }
-  
-  .event-form {
-    margin-bottom: 20px;
-  }
-  
-  .event-form input {
-    display: block;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    width: 100%;
-  }
-  
-  .event-form button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .event-form button:hover {
-    background-color: #0056b3;
-  }
-  
-  .event-list {
-    margin-top: 20px;
-  }
-  
-  .event-list ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .event-list li {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    border: 1px solid #ddd;
-    margin-bottom: 5px;
-    border-radius: 4px;
-  }
-  
-  .event-list button {
-    margin-left: 10px;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #dc3545;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .event-list button:hover {
-    background-color: #c82333;
-  }
-  
+  display: flex;
+  padding: 20px;
+  height: 80vh;
+  gap: 20px; /* Add spacing between event list and form */
+}
+
+/* Container for event list and form, each taking half of the width */
+.event-list, .event-form {
+  flex: 1;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Styles for the event list section */
+.event-list {
+  max-width: 70%;
+  overflow-y: auto; /* Scroll if content exceeds container height */
+  border-right: 2px solid #ddd;
+  max-height: 500px;
+}
+
+/* Styles for the header of the event list */
+.event-list-header {
+  display: flex;
+  padding: 10px;
+  font-weight: bold;
+  border-bottom: 2px solid #ddd;
+  background-color: #f8f9fa;
+}
+
+/* Header items in the event list */
+.event-list-header .header-item {
+  flex: 1;
+  text-align: left;
+}
+
+/* Remove default list styling */
+.event-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* List items in the event list */
+.event-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+/* Align date text to the left */
+.event-list .date {
+  flex: 1;
+  text-align: left;
+}
+
+.event-list .event-name {
+  flex: 2;
+}
+
+.event-list .actions {
+  display: flex;
+  gap: 10px;
+}
+
+.event-list button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.event-list .btn-delete {
+  color: #c82333;
+  border: 2px solid #c82333;
+}
+
+.event-list .btn-edit {
+  color: #007bff;
+  border: 2px solid #007bff;
+}
+
+.event-list .btn-view {
+  color: #28a745;
+  border: 2px solid #28a745;
+}
+
+.event-list button i {
+  font-size: 0.8rem;
+}
+
+/* Hover effects for buttons */
+.event-list .btn-delete:hover {
+  background-color: #c82333;
+  color: white;
+}
+
+.event-list .btn-edit:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.event-list .btn-view:hover {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Toggle buttons for switching between event views */
+.toggle-buttons {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.toggle-btn {
+  flex: 1;
+  padding: 10px;
+  margin: 0 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.toggle-btn.active {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Styles for event registration form */
+.event-form {
+  max-width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.event-form label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.event-form input, .event-form textarea {
+  margin-top: 5px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Inline groups for date and time fields */
+.event-form .inline-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.event-form .inline-group .input-group {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+}
+
+/* Submit button for the form */
+.event-form button {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.event-form button:hover {
+  background-color: #0056b3;
+}
+
+button::after {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 5px;
+  padding: 5px;
+  background-color: black;
+  color: white;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+button:hover::after {
+  opacity: 1;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+li span {
+  flex: 1;
+}
