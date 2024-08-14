@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/Header'; // Adjust the path as needed
+import Header from '../components/Header';
 import '../styles/ContactUs.css';
 import customerServiceVideo from '../videos/customer-service.mp4'; // Import the video file
 
