@@ -3,6 +3,19 @@ import '../styles/Events.css';
 import mockEvents from '../data/mockData';
 import { FaEdit, FaTrashAlt, FaEye } from 'react-icons/fa';
 
+// Mock data for companies and users
+const companies = [
+  { id: 1, name: 'Company 1' },
+  { id: 2, name: 'Company 2' },
+  { id: 3, name: 'Company 3' }
+];
+
+const usersByCompany = {
+  1: ['User A', 'User B'],
+  2: ['User C', 'User D'],
+  3: ['User E', 'User F']
+};
+
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [editingEvent, setEditingEvent] = useState(null);
@@ -13,12 +26,14 @@ const Events = () => {
     startTime: '',
     endTime: '',
     location: '',
-    description: ''
+    description: '',
+    company: '',
+    invitedUsers: []
   });
   const [viewingPastEvents, setViewingPastEvents] = useState(false);
 
+  // Simulate fetching data from an API
   useEffect(() => {
-    // Simulate fetching data from an API
     setEvents(mockEvents);
   }, []);
 
@@ -35,15 +50,7 @@ const Events = () => {
         { id: Date.now(), ...formData }
       ]);
     }
-    setFormData({
-      name: '',
-      startDate: '',
-      endDate: '',
-      startTime: '',
-      endTime: '',
-      location: '',
-      description: ''
-    });
+    resetForm();
   };
 
   const handleEdit = (event) => {
@@ -55,7 +62,9 @@ const Events = () => {
       startTime: event.startTime,
       endTime: event.endTime,
       location: event.location,
-      description: event.description
+      description: event.description,
+      company: event.company || '',
+      invitedUsers: event.invitedUsers || []
     });
   };
 
@@ -65,6 +74,37 @@ const Events = () => {
 
   const handleToggleView = () => {
     setViewingPastEvents(!viewingPastEvents);
+  };
+
+  const resetForm = () => {
+    setFormData({
+      name: '',
+      startDate: '',
+      endDate: '',
+      startTime: '',
+      endTime: '',
+      location: '',
+      description: '',
+      company: '',
+      invitedUsers: []
+    });
+  };
+
+  const handleCompanyChange = (e) => {
+    const selectedCompanyId = e.target.value;
+    setFormData({
+      ...formData,
+      company: selectedCompanyId,
+      invitedUsers: [] // Clear previous invitations when company changes
+    });
+  };
+
+  const handleUserSelection = (e) => {
+    const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
+    setFormData({
+      ...formData,
+      invitedUsers: selectedOptions
+    });
   };
 
   // Function to format the date as dd-MMM-yyyy
@@ -209,6 +249,39 @@ const Events = () => {
             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
             required
           />
+
+          {/* Dropdown for selecting company */}
+          <label htmlFor="company">Company:</label>
+          <select
+            id="company"
+            name="company"
+            value={formData.company}
+            onChange={handleCompanyChange}
+            required
+          >
+            <option value="">Select Company</option>
+            {companies.map(company => (
+              <option key={company.id} value={company.id}>{company.name}</option>
+            ))}
+          </select>
+
+          {/* Dropdown for selecting users based on the selected company */}
+          {formData.company && (
+            <>
+              <label htmlFor="invitedUsers">Invite Users:</label>
+              <select
+                id="invitedUsers"
+                name="invitedUsers"
+                multiple
+                value={formData.invitedUsers}
+                onChange={handleUserSelection}
+              >
+                {usersByCompany[formData.company]?.map(user => (
+                  <option key={user} value={user}>{user}</option>
+                ))}
+              </select>
+            </>
+          )}
 
           <button type="submit">{editingEvent ? 'Update Event' : 'Create Event'}</button>
         </form>
