@@ -1,6 +1,5 @@
 import React from 'react';
 import './styles/app.css';
-import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import AboutUs from './pages/AboutUs';
@@ -14,7 +13,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Header />
         <div className="main-content">
           <Routes>
             <Route path="/" element={<HomePage />} />

@@ -1,13 +1,13 @@
 import React from 'react';
 import Sidebar from '../components/Sidebar';
-import Dashboard from '../components/Dashboard';
+import AdminHeader from '../components/AdminHeader';
 import '../styles/AdminPanel.css';
 
 const AdminPanel = () => {
   return (
     <div className="admin-panel">
+      <AdminHeader />
       <Sidebar />
-      <Dashboard />
     </div>
   );
 };
