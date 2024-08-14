@@ -12,7 +12,7 @@ const AdminPanel = () => {
 
   return (
     <div className="admin-panel">
-      <AdminHeader onToggleSidebar={toggleSidebar} />
+      <AdminHeader />
       <Sidebar isOpen={isSidebarOpen} onToggleSidebar={toggleSidebar} />
     </div>
   );

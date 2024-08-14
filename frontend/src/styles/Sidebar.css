@@ -1,4 +1,3 @@
-/* Sidebar.css */
 .sidebar {
   position: fixed;
   top: 60px; /* Adjust based on header height */
@@ -48,7 +47,6 @@
   .sidebar-open-btn {
       display: block;
       position: fixed;
-      top: 60px; /* Adjust to the height of the header */
       left: 0;
       width: 50px;
       height: 50px;
