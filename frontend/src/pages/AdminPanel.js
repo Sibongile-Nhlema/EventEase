@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom'; // Removed Router import
+import { Routes, Route } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import AdminHeader from '../components/AdminHeader';
 import Dashboard from '../pages/Dashboard';
