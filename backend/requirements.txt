@@ -5,3 +5,5 @@ WTForms
 Flask-Mail
 Flask-SQLAlchemy
 pytest
+Flask-JWT-Extended
+pymysql

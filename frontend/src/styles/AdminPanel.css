@@ -1,0 +1,89 @@
+.admin-panel {
+  display: flex;
+  flex-direction: column;
+  height: 90vh; /* viewport height */
+}
+
+.admin-header {
+  height: 60px;
+  background-color: #343a40;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 20px; 
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px; /* Sidebar width */
+  background-color: #343a40; /* Match the header color */
+  color: white;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-content {
+  /* margin-left: 250px; /* Space for the sidebar */
+  padding: 5px; /* Space around content */
+  background-color: #f8f9fa; /* Light background color */
+  border-radius: 8px; /* Rounded corners */
+  flex: 1; /* Takes up the remaining space */
+  display: flex;
+  flex-direction: column;
+}
+
+.participants-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.participants-table th, .participants-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.participants-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.participants-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tabs button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #f2f2f2;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.tabs button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.tabs button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.tab-content {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+

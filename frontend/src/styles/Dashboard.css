@@ -1,0 +1,39 @@
+/* Dashboard.css */
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 60px); /* Adjust height for full viewport minus header */
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 250px; /* Adjust for sidebar width */
+  padding: 20px;
+  background-color: #f8f9fa; /* Light background color */
+}
+
+.dashboard-main {
+  flex: 1;
+  overflow-y: auto; /* Scrollable content if needed */
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.dashboard-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-item h2 {
+  margin-top: 0;
+}
