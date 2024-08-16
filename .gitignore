@@ -8,4 +8,6 @@ __pycache__/
 # Ignore environment directories
 venv/
 node_modules
-node_modules
+
+server.key
+server.pub
