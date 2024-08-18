@@ -16,10 +16,10 @@ app.config['MONGO_URI'] = os.getenv('DATABASE_URL')
 mongo = PyMongo(app)
 
 # Import routes after initializing the app
-from backend.routes import events
+from backend.routes import api_blueprint
 
 # Register routes
-app.register_blueprint(events)
+app.register_blueprint(api_blueprint, url_prefix='/api')
 
 # Serve the React frontend
 @app.route('/')

@@ -4,7 +4,7 @@ from bson.objectid import ObjectId
 
 events = Blueprint('events', __name__)
 
-@events.route('/api/events', methods=['GET'])
+@events.route('/events', methods=['GET'])
 def get_events():
     try:
         events_collection = mongo.db.events
@@ -26,7 +26,7 @@ def get_events():
     except Exception as e:
         return jsonify({'error': 'An error occurred while fetching events', 'details': str(e)}), 500
 
-@events.route('/api/events/<id>', methods=['GET'])
+@events.route('/events/<id>', methods=['GET'])
 def get_event(id):
     try:
         event = mongo.db.events.find_one({'_id': ObjectId(id)})
@@ -48,7 +48,7 @@ def get_event(id):
     except Exception as e:
         return jsonify({'error': 'An error occurred while fetching the event', 'details': str(e)}), 500
 
-@events.route('/api/events', methods=['POST'])
+@events.route('/events', methods=['POST'])
 def create_event():
     try:
         data = request.json
@@ -57,7 +57,7 @@ def create_event():
     except Exception as e:
         return jsonify({'error': 'An error occurred while creating the event', 'details': str(e)}), 500
 
-@events.route('/api/events/<id>', methods=['PUT'])
+@events.route('/events/<id>', methods=['PUT'])
 def update_event(id):
     try:
         data = request.json
@@ -69,7 +69,7 @@ def update_event(id):
     except Exception as e:
         return jsonify({'error': 'An error occurred while updating the event', 'details': str(e)}), 500
 
-@events.route('/api/events/<id>', methods=['DELETE'])
+@events.route('/events/<id>', methods=['DELETE'])
 def delete_event(id):
     try:
         result = mongo.db.events.delete_one({'_id': ObjectId(id)})
