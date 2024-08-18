@@ -17,6 +17,9 @@ def create_participant():
             'name': new_participant.get('name'),
             'email': new_participant.get('email'),
             'phone': new_participant.get('phone'),
+            'location': new_participant.get('location'),
+            'occupation': new_participant.get('occupation'),
+            'company': new_participant.get('company'),
             'registered_for': new_participant.get('registered_for')
         }), 201
     except Exception as e:
@@ -35,6 +38,9 @@ def get_participants():
                 'name': participant.get('name'),
                 'email': participant.get('email'),
                 'phone': participant.get('phone'),
+                'location': participant.get('location'),
+                'occupation': participant.get('occupation'),
+                'company': participant.get('company'),
                 'registered_for': participant.get('registered_for')
             }
             participant_list.append(participant_data)
@@ -54,6 +60,9 @@ def get_participant(participant_id):
                 'name': participant.get('name'),
                 'email': participant.get('email'),
                 'phone': participant.get('phone'),
+                'location': participant.get('location'),
+                'occupation': participant.get('occupation'),
+                'company': participant.get('company'),
                 'registered_for': participant.get('registered_for')
             })
         else:
@@ -75,6 +84,9 @@ def update_participant(participant_id):
                 'name': updated_participant.get('name'),
                 'email': updated_participant.get('email'),
                 'phone': updated_participant.get('phone'),
+                'location': updated_participant.get('location'),
+                'occupation': updated_participant.get('occupation'),
+                'company': updated_participant.get('company'),
                 'registered_for': updated_participant.get('registered_for')
             })
         else:
