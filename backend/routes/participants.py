@@ -1,5 +1,5 @@
 from flask import jsonify
-from app import mongo
+from backend.app import mongo
 
 def get_participants():
     try:

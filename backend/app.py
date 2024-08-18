@@ -1,3 +1,5 @@
+# backend/app.py
+
 from flask import Flask, send_from_directory
 from flask_cors import CORS
 from flask_pymongo import PyMongo
@@ -15,9 +17,8 @@ CORS(app)
 app.config['MONGO_URI'] = os.getenv('DATABASE_URL')
 mongo = PyMongo(app)
 
-# Import routes
-from routes.events import get_events
-from routes.participants import get_participants
+# Import routes after initializing the app
+from backend.routes import get_events, get_participants
 
 # Register routes
 app.add_url_rule('/api/events', 'get_events', get_events, methods=['GET'])
@@ -32,11 +33,6 @@ def serve():
 def static_proxy(path):
     return send_from_directory(app.static_folder, path)
 
-
 if __name__ == '__main__':
-    # Use the PORT environment variable if it's set; otherwise, default to 5000.
     port = int(os.environ.get('PORT', 5000))
-    
-    # Bind to 0.0.0.0 to make the server accessible externally.
     app.run(host='0.0.0.0', port=port, debug=True)
-
