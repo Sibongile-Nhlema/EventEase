@@ -228,3 +228,27 @@ li {
 li span {
   flex: 1;
 }
+
+/* Search bar styles */
+.search-bar {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar input {
+  width: 100%;
+  max-width: 600px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.125);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+}

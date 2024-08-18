@@ -8,6 +8,7 @@ import GetStarted from './pages/GetStarted';
 import AdminPanel from './pages/AdminPanel';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
