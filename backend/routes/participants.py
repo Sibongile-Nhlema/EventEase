@@ -1,6 +1,9 @@
-from flask import jsonify
+from flask import Blueprint, request, jsonify
 from backend.app import mongo
 
+participants = Blueprint('participants', __name__)
+
+@participants.route('/participants', methods=['GET'])
 def get_participants():
     try:
         participants_collection = mongo.db.participants

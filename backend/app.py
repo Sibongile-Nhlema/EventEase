@@ -1,5 +1,3 @@
-# backend/app.py
-
 from flask import Flask, send_from_directory
 from flask_cors import CORS
 from flask_pymongo import PyMongo
@@ -18,11 +16,10 @@ app.config['MONGO_URI'] = os.getenv('DATABASE_URL')
 mongo = PyMongo(app)
 
 # Import routes after initializing the app
-from backend.routes import get_events, get_participants
+from backend.routes import events
 
 # Register routes
-app.add_url_rule('/api/events', 'get_events', get_events, methods=['GET'])
-app.add_url_rule('/api/participants', 'get_participants', get_participants, methods=['GET'])
+app.register_blueprint(events)
 
 # Serve the React frontend
 @app.route('/')
