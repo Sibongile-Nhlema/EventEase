@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Events.css';
 import { FaEdit, FaTrashAlt, FaEye } from 'react-icons/fa';
+import EventPopup from '../components/EventPopup';
 
 const Events = () => {
   const [events, setEvents] = useState([]);
@@ -15,11 +16,12 @@ const Events = () => {
     description: ''
   });
   const [viewingPastEvents, setViewingPastEvents] = useState(false);
-  const [searchQuery, setSearchQuery] = useState(''); // New state for search query
-  const [currentPage, setCurrentPage] = useState(1); // Pagination state
-  const [eventsPerPage] = useState(4); // Number of events per page
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [eventsPerPage] = useState(4);
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
-  // Fetch events from the backend API
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -88,14 +90,14 @@ const Events = () => {
     });
   };
 
-  const formatDate = (dateString) => {
-    const options = { day: '2-digit', month: 'short', year: 'numeric' };
-    return new Date(dateString).toLocaleDateString('en-GB', options);
-  };
-
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
-    setCurrentPage(1); // Reset to the first page when search changes
+    setCurrentPage(1);
+  };
+
+  const handleView = (event) => {
+    setSelectedEvent(event);
+    setShowPopup(true);
   };
 
   const filteredEvents = events
@@ -108,7 +110,6 @@ const Events = () => {
     })
     .sort((a, b) => new Date(a.start_date) - new Date(b.start_date));
 
-  // Pagination logic
   const indexOfLastEvent = currentPage * eventsPerPage;
   const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
   const currentEvents = filteredEvents.slice(indexOfFirstEvent, indexOfLastEvent);
@@ -139,7 +140,6 @@ const Events = () => {
           </div>
         </div>
 
-        {/* Search bar */}
         <div className="search-bar">
           <input
             type="text"
@@ -156,7 +156,7 @@ const Events = () => {
                 <span className="event-title">{event.title}</span>
                 <span className="date">{formatDate(event.start_date)}</span>
                 <span className="actions">
-                  <button className="btn-view" onClick={() => console.log('View', event)}>
+                  <button className="btn-view" onClick={() => handleView(event)}>
                     <FaEye />
                   </button>
                   <button className="btn-edit" onClick={() => handleEdit(event)}>
@@ -171,7 +171,6 @@ const Events = () => {
           </ul>
         </div>
 
-        {/* Pagination controls */}
         <div className="pagination">
           {Array.from({ length: Math.ceil(filteredEvents.length / eventsPerPage) }, (_, index) => (
             <button
@@ -268,14 +267,31 @@ const Events = () => {
             value={formData.description}
             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
             required
-          />
+          ></textarea>
 
-          <button type="submit">{editingEvent ? 'Update Event' : 'Create Event'}</button>
-          <button type="button" onClick={handleCancel} className="btn-cancel">Cancel</button>
+          <button type="submit" className="btn-submit">
+            {editingEvent ? 'Update Event' : 'Create Event'}
+          </button>
+          {editingEvent && (
+            <button type="button" onClick={handleCancel} className="btn-cancel">
+              Cancel
+            </button>
+          )}
         </form>
       </div>
+
+      {/* Popup Component */}
+      {showPopup && (
+        <EventPopup event={selectedEvent} onClose={() => setShowPopup(false)} />
+      )}
     </div>
   );
+};
+
+// Utility function to format date
+const formatDate = (dateString) => {
+  const options = { day: '2-digit', month: 'short', year: 'numeric' };
+  return new Date(dateString).toLocaleDateString('en-GB', options);
 };
 
 export default Events;
