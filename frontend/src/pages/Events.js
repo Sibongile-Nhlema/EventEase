@@ -71,6 +71,11 @@ const Events = () => {
     setViewingPastEvents(!viewingPastEvents);
   };
 
+  const handleCancel = () => {
+    resetForm();
+    setEditingEvent(null);
+  };
+
   const resetForm = () => {
     setFormData({
       title: '',
@@ -266,6 +271,7 @@ const Events = () => {
           />
 
           <button type="submit">{editingEvent ? 'Update Event' : 'Create Event'}</button>
+          <button type="button" onClick={handleCancel} className="btn-cancel">Cancel</button>
         </form>
       </div>
     </div>
