@@ -13,7 +13,7 @@ const GetStarted = () => {
           <p>Are you an organizer or a participant?</p>
           <div className="get-started-buttons">
             <Link to="/admin" className="cta-button">I am an Organizer</Link>
-            <Link to="/signup?role=participant" className="cta-button">I am a Participant</Link>
+            <Link to="/participant" className="cta-button">I am a Participant</Link>
           </div>
         </header>
       </div>
