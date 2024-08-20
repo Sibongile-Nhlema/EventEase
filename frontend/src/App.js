@@ -21,16 +21,13 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/getstarted" element={<GetStarted />} />
+          <Route path="/signup-login/:role" element={<SignupLogin />} /> {/* Updated route for SignupLogin */}
           
           {/* Admin Panel Routes */}
-          <Route path="/admin/*" element={<AdminPanel />}>
-            <Route path="signup-login/:role" element={<SignupLogin />} />
-          </Route>
+          <Route path="/admin/*" element={<AdminPanel />} />
           
           {/* Participant Panel Routes */}
-          <Route path="/participant/*" element={<ParticipantPanel />}>
-            <Route path="signup-login/:role" element={<SignupLogin />} />
-          </Route>
+          <Route path="/participant/*" element={<ParticipantPanel />} />
         </Routes>
         <Footer />
       </div>
