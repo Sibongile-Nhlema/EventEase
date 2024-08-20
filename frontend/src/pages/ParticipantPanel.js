@@ -4,11 +4,11 @@ import ParticipantSidebar from '../components/ParticipantSidebar';
 import ParticipantHeader from '../components/ParticipantHeader';
 import ParticipantDashboard from '../pages/ParticipantDashboard';
 import ParticipantEvents from '../pages/ParticipantEvents';
-import Notifications from '../pages/Notifications';
+import ParticipantsNotifications from '../pages/ParticipantsNotifications';
 import Settings from '../pages/Settings';
 import '../styles/AdminPanel.css';
 
-const AdminPanel = () => {
+const ParticipantPanel = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
@@ -24,7 +24,7 @@ const AdminPanel = () => {
           <Route path="/"/>
           <Route path="/dashboard" element={<ParticipantDashboard />} />
           <Route path="/events" element={<ParticipantEvents />} />
-          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/notifications" element={<ParticipantsNotifications />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
       </div>
@@ -32,4 +32,4 @@ const AdminPanel = () => {
   );
 };
 
-export default AdminPanel;
+export default ParticipantPanel;

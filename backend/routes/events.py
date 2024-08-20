@@ -1,6 +1,8 @@
 from flask import Blueprint, request, jsonify
 from backend.app import mongo
 from bson.objectid import ObjectId
+import datetime
+
 
 events = Blueprint('events', __name__)
 
@@ -79,3 +81,15 @@ def delete_event(id):
             return jsonify({'error': 'Event not found'}), 404
     except Exception as e:
         return jsonify({'error': 'An error occurred while deleting the event', 'details': str(e)}), 500
+
+@events.route('/events/upcoming/count', methods=['GET'])
+def get_upcoming_events_count():
+    try:
+        events_collection = mongo.db.events
+        now = datetime.datetime.utcnow()
+        count = events_collection.count_documents({
+            'start_date': {'$gte': now}
+        })
+        return jsonify({'count': count})
+    except Exception as e:
+        return jsonify({'error': 'An error occurred while counting upcoming events', 'details': str(e)}), 500
