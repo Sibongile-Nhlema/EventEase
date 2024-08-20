@@ -1,40 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Events.css';
-import mockEvents from '../data/mockData';
 import { FaEdit, FaTrashAlt, FaEye } from 'react-icons/fa';
-
-// Mock data for companies and users
-const companies = [
-  { id: 1, name: 'Company 1' },
-  { id: 2, name: 'Company 2' },
-  { id: 3, name: 'Company 3' }
-];
-
-const usersByCompany = {
-  1: ['User A', 'User B'],
-  2: ['User C', 'User D'],
-  3: ['User E', 'User F']
-};
+import EventPopup from '../components/EventPopup';
 
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [editingEvent, setEditingEvent] = useState(null);
   const [formData, setFormData] = useState({
-    name: '',
-    startDate: '',
-    endDate: '',
-    startTime: '',
-    endTime: '',
+    title: '',
+    start_date: '',
+    end_date: '',
+    start_time: '',
+    end_time: '',
     location: '',
-    description: '',
-    company: '',
-    invitedUsers: []
+    description: ''
   });
   const [viewingPastEvents, setViewingPastEvents] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [eventsPerPage] = useState(4);
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
-  // Simulate fetching data from an API
   useEffect(() => {
-    setEvents(mockEvents);
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch('/api/events');
+        const data = await response.json();
+        setEvents(data);
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    };
+
+    fetchEvents();
   }, []);
 
   const handleCreateOrUpdate = (e) => {
@@ -56,15 +55,13 @@ const Events = () => {
   const handleEdit = (event) => {
     setEditingEvent(event);
     setFormData({
-      name: event.name,
-      startDate: event.startDate,
-      endDate: event.endDate,
-      startTime: event.startTime,
-      endTime: event.endTime,
+      title: event.title,
+      start_date: event.start_date,
+      end_date: event.end_date,
+      start_time: event.start_time,
+      end_time: event.end_time,
       location: event.location,
-      description: event.description,
-      company: event.company || '',
-      invitedUsers: event.invitedUsers || []
+      description: event.description
     });
   };
 
@@ -76,53 +73,54 @@ const Events = () => {
     setViewingPastEvents(!viewingPastEvents);
   };
 
+  const handleCancel = () => {
+    resetForm();
+    setEditingEvent(null);
+  };
+
   const resetForm = () => {
     setFormData({
-      name: '',
-      startDate: '',
-      endDate: '',
-      startTime: '',
-      endTime: '',
+      title: '',
+      start_date: '',
+      end_date: '',
+      start_time: '',
+      end_time: '',
       location: '',
-      description: '',
-      company: '',
-      invitedUsers: []
+      description: ''
     });
   };
 
-  const handleCompanyChange = (e) => {
-    const selectedCompanyId = e.target.value;
-    setFormData({
-      ...formData,
-      company: selectedCompanyId,
-      invitedUsers: [] // Clear previous invitations when company changes
-    });
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+    setCurrentPage(1);
   };
 
-  const handleUserSelection = (e) => {
-    const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
-    setFormData({
-      ...formData,
-      invitedUsers: selectedOptions
-    });
+  const handleView = (event) => {
+    setSelectedEvent(event);
+    setShowPopup(true);
   };
 
-  // Function to format the date as dd-MMM-yyyy
-  const formatDate = (dateString) => {
-    const options = { day: '2-digit', month: 'short', year: 'numeric' };
-    return new Date(dateString).toLocaleDateString('en-GB', options);
-  };
-
-  // Filter events based on the current view
   const filteredEvents = events
-    .filter(event => viewingPastEvents ? new Date(event.startDate) < new Date() : new Date(event.startDate) >= new Date())
-    .sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+    .filter(event => {
+      const matchesSearch = event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           event.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           event.start_date.includes(searchQuery);
+      const isPastEvent = new Date(event.start_date) < new Date();
+      return matchesSearch && (viewingPastEvents ? isPastEvent : !isPastEvent);
+    })
+    .sort((a, b) => new Date(a.start_date) - new Date(b.start_date));
+
+  const indexOfLastEvent = currentPage * eventsPerPage;
+  const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
+  const currentEvents = filteredEvents.slice(indexOfFirstEvent, indexOfLastEvent);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="events-page">
       <div className="event-list">
         <header className="event-list-header">
-          <div className="header-item">Event Name</div>
+          <div className="header-item">Event Title</div>
           <div className="header-item">Date</div>
           <div className="header-item">Options</div>
         </header>
@@ -142,14 +140,23 @@ const Events = () => {
           </div>
         </div>
 
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Search by title, date, or location"
+            value={searchQuery}
+            onChange={handleSearch}
+          />
+        </div>
+
         <div className="event-list-box">
           <ul>
-            {filteredEvents.map(event => (
+            {currentEvents.map(event => (
               <li key={event.id}>
-                <span className="event-name">{event.name}</span>
-                <span className="date">{formatDate(event.startDate)}</span>
+                <span className="event-title">{event.title}</span>
+                <span className="date">{formatDate(event.start_date)}</span>
                 <span className="actions">
-                  <button className="btn-view" onClick={() => console.log('View', event)}>
+                  <button className="btn-view" onClick={() => handleView(event)}>
                     <FaEye />
                   </button>
                   <button className="btn-edit" onClick={() => handleEdit(event)}>
@@ -163,6 +170,18 @@ const Events = () => {
             ))}
           </ul>
         </div>
+
+        <div className="pagination">
+          {Array.from({ length: Math.ceil(filteredEvents.length / eventsPerPage) }, (_, index) => (
+            <button
+              key={index + 1}
+              onClick={() => paginate(index + 1)}
+              className={`pagination-button ${currentPage === index + 1 ? 'active' : ''}`}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="event-form">
@@ -171,36 +190,36 @@ const Events = () => {
         </header>
 
         <form onSubmit={handleCreateOrUpdate} className="event-registration-form">
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="title">Title:</label>
           <input
             type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            id="title"
+            name="title"
+            value={formData.title}
+            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
             required
           />
 
           <div className="inline-group">
             <div className="input-group">
-              <label htmlFor="startDate">Start Date:</label>
+              <label htmlFor="start_date">Start Date:</label>
               <input
                 type="date"
-                id="startDate"
-                name="startDate"
-                value={formData.startDate}
-                onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
+                id="start_date"
+                name="start_date"
+                value={formData.start_date}
+                onChange={(e) => setFormData({ ...formData, start_date: e.target.value })}
                 required
               />
             </div>
             <div className="input-group">
-              <label htmlFor="endDate">End Date:</label>
+              <label htmlFor="end_date">End Date:</label>
               <input
                 type="date"
-                id="endDate"
-                name="endDate"
-                value={formData.endDate}
-                onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
+                id="end_date"
+                name="end_date"
+                value={formData.end_date}
+                onChange={(e) => setFormData({ ...formData, end_date: e.target.value })}
                 required
               />
             </div>
@@ -208,24 +227,24 @@ const Events = () => {
 
           <div className="inline-group">
             <div className="input-group">
-              <label htmlFor="startTime">Start Time:</label>
+              <label htmlFor="start_time">Start Time:</label>
               <input
                 type="time"
-                id="startTime"
-                name="startTime"
-                value={formData.startTime}
-                onChange={(e) => setFormData({ ...formData, startTime: e.target.value })}
+                id="start_time"
+                name="start_time"
+                value={formData.start_time}
+                onChange={(e) => setFormData({ ...formData, start_time: e.target.value })}
                 required
               />
             </div>
             <div className="input-group">
-              <label htmlFor="endTime">End Time:</label>
+              <label htmlFor="end_time">End Time:</label>
               <input
                 type="time"
-                id="endTime"
-                name="endTime"
-                value={formData.endTime}
-                onChange={(e) => setFormData({ ...formData, endTime: e.target.value })}
+                id="end_time"
+                name="end_time"
+                value={formData.end_time}
+                onChange={(e) => setFormData({ ...formData, end_time: e.target.value })}
                 required
               />
             </div>
@@ -248,46 +267,31 @@ const Events = () => {
             value={formData.description}
             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
             required
-          />
+          ></textarea>
 
-          {/* Dropdown for selecting company */}
-          <label htmlFor="company">Company:</label>
-          <select
-            id="company"
-            name="company"
-            value={formData.company}
-            onChange={handleCompanyChange}
-            required
-          >
-            <option value="">Select Company</option>
-            {companies.map(company => (
-              <option key={company.id} value={company.id}>{company.name}</option>
-            ))}
-          </select>
-
-          {/* Dropdown for selecting users based on the selected company */}
-          {formData.company && (
-            <>
-              <label htmlFor="invitedUsers">Invite Users:</label>
-              <select
-                id="invitedUsers"
-                name="invitedUsers"
-                multiple
-                value={formData.invitedUsers}
-                onChange={handleUserSelection}
-              >
-                {usersByCompany[formData.company]?.map(user => (
-                  <option key={user} value={user}>{user}</option>
-                ))}
-              </select>
-            </>
+          <button type="submit" className="btn-submit">
+            {editingEvent ? 'Update Event' : 'Create Event'}
+          </button>
+          {editingEvent && (
+            <button type="button" onClick={handleCancel} className="btn-cancel">
+              Cancel
+            </button>
           )}
-
-          <button type="submit">{editingEvent ? 'Update Event' : 'Create Event'}</button>
         </form>
       </div>
+
+      {/* Popup Component */}
+      {showPopup && (
+        <EventPopup event={selectedEvent} onClose={() => setShowPopup(false)} />
+      )}
     </div>
   );
+};
+
+// Utility function to format date
+const formatDate = (dateString) => {
+  const options = { day: '2-digit', month: 'short', year: 'numeric' };
+  return new Date(dateString).toLocaleDateString('en-GB', options);
 };
 
 export default Events;

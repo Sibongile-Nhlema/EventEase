@@ -12,6 +12,7 @@ In today's fast-paced world, event organizers face numerous challenges, from man
 - **📧 Automated Communication:** Keep participants informed with automated email and SMS reminders, updates, and confirmations.
 - **📈 Data Visualization:** Leverage Power BI for detailed and insightful visualizations, helping you understand your event's impact.
 - **👌 User-Friendly Interface:** Experience a smooth and intuitive user interface designed with React, making event management easier than ever.
+- **📝 Registration Requests:** Participants can request to register for events, and admins can approve or reject these requests. Admins can also store or delete requests as needed.
 
 ## 🛠️ Technologies Used
 - **Backend:** 
@@ -36,20 +37,77 @@ In today's fast-paced world, event organizers face numerous challenges, from man
   - ![pytest](https://img.shields.io/badge/pytest-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white) ![unittest](https://img.shields.io/badge/unittest-FF5733?style=for-the-badge&logo=python&logoColor=white)
   - **pytest, unittest**
 
+## 📋 Endpoints
+- **Event Management**
+    - GET /api/events: Retrieve all events.
+    - GET /api/events/<id>: Retrieve a single event by ID.
+    - POST /api/events: Create a new event.
+    - PUT /api/events/<id>: Update an event by ID.
+    - DELETE /api/events/<id>: Delete an event by ID.
+- **Participant Management**
+    - GET /api/participants: Retrieve all participants.
+    - GET /api/participants/<id>: Retrieve a single participant by ID.
+    - POST /api/participants: Create a new participant.
+    - PUT /api/participants/<id>: Update a participant by ID.
+    - DELETE /api/participants/<id>: Delete a participant by ID.
+- **Admin/Organizer Management**
+    - GET /api/admins: Retrieve all admins.
+    - GET /api/admins/<id>: Retrieve a single admin by ID.
+    - POST /api/admins: Create a new admin.
+    - PUT /api/admins/<id>: Update an admin by ID.
+    - DELETE /api/admins/<id>: Delete an admin by ID.
+- **Company Management**
+    - GET /api/companies: Retrieve all companies.
+    - GET /api/companies/<id>: Retrieve a single company by ID.
+    - POST /api/companies: Create a new company.
+    - PUT /api/companies/<id>: Update a company by ID.
+    - DELETE /api/companies/<id>: Delete a company by ID.
+- **Registration Requests**
+    - POST /api/registrations: Request to register for an event/service.
+    - GET /api/registrations: Retrieve all registration requests.
+    - GET /api/registrations/<id>: Retrieve a single registration request by ID.
+    - PUT /api/registrations/<id>: Update a registration request (e.g., approve/reject).
+    - DELETE /api/registrations/<id>: Delete a registration request by ID.
+
 ## 🔧 Installation
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/Sibongile-Nhlema/EventEase.git
 
+2. **Navigate to the project directory:**
+    ```bash
+    cd EventEase
+
+3. **Create a virtual environment and activate it:**
+    ```bash
+    python -m venv venv
+    source venv/bin/activate
+
+4. **Install the required dependencies:**
+    ```bash
+    pip install -r requirements.txt
+
+5. **Set up the database and run the application:**
+
+6. **Start the backend server**
+    ```bash
+    flask run
+
+7. **Run frontend application:**
+    ```bash
+    cd frontend
+    npm install
+    npm start
+
 💻 Usage
-- To update later
+- To interact with the API: Use tools like Postman or curl to test the endpoints listed above.
 
 🤝 Contributing
--
+- How to contribute: Fork the repository, create a new branch, make your changes, and submit a pull request. Ensure that you follow the coding standards and write tests for your changes.
 
 📜 License
--
+- License details: This project is licensed under the MIT License. See the LICENSE file for details.
 
 ✉️ Contact
-- 
+- Project maintainers: For any questions or suggestions, please reach out to the project maintainers through the repository issues or directly via email.
 
