@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
 import ParticipantSidebar from '../components/ParticipantSidebar';
 import ParticipantHeader from '../components/ParticipantHeader';
 import ParticipantDashboard from '../pages/ParticipantDashboard';
 import ParticipantEvents from '../pages/ParticipantEvents';
 import ParticipantsNotifications from '../pages/ParticipantsNotifications';
 import Settings from '../pages/Settings';
+import SignupLogin from '../pages/SignupLogin';
 import '../styles/AdminPanel.css';
 
 const ParticipantPanel = () => {
@@ -16,16 +17,20 @@ const ParticipantPanel = () => {
   };
 
   return (
-    <div className="admin-panel">
+    <div className="admin-panel"> 
       <ParticipantHeader />
       <ParticipantSidebar isOpen={isSidebarOpen} onToggleSidebar={toggleSidebar} />
       <div className="admin-content">
         <Routes>
-          <Route path="/"/>
-          <Route path="/dashboard" element={<ParticipantDashboard />} />
-          <Route path="/events" element={<ParticipantEvents />} />
-          <Route path="/notifications" element={<ParticipantsNotifications />} />
-          <Route path="/settings" element={<Settings />} />
+          {/* Route for SignupLogin, which should not be nested */}
+          <Route path="/signup-login/:role" element={<SignupLogin />} />
+          {/* Nested routes */}
+          <Route path="/*" element={<Outlet />}>
+            <Route path="dashboard" element={<ParticipantDashboard />} />
+            <Route path="events" element={<ParticipantEvents />} />
+            <Route path="notifications" element={<ParticipantsNotifications />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
         </Routes>
       </div>
     </div>
