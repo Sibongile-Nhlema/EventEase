@@ -34,11 +34,11 @@ def login():
     email = data.get('email')
     password = data.get('password')
     user = mongo.db.users.find_one({'email': email})
-    
+
     if user:
         print('Stored Password Hash:', user['password'])
         print('Provided Password:', password)
-    
+
     if user and bcrypt.check_password_hash(user['password'], password):
         token = jwt.encode({
             'email': email,
@@ -46,6 +46,12 @@ def login():
         }, app.config['SECRET_KEY'], algorithm='HS256')
         return jsonify({'token': token})
     return jsonify({'message': 'Invalid credentials'}), 401
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    # In a stateless JWT authentication, there's no need to invalidate tokens on the server side.
+    # Just removing the token on the client side is sufficient.
+    return jsonify({'message': 'Successfully logged out'})
 
 if __name__ == '__main__':
     app.run(debug=True)
