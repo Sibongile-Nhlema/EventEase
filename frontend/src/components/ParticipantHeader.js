@@ -2,12 +2,11 @@ import React from 'react';
 import '../styles/AdminHeader.css';
 
 const AdminHeader = ({ onToggleDarkMode, onToggleSidebar }) => {
-  const userName = "Jane Doe";
 
   return (
     <div className="admin-header">
       <div className="header-content">
-        <h1>Welcome, {userName}</h1>
+        <h1>Welcome</h1>
       </div>
     </div>
   );
