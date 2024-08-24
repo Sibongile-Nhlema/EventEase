@@ -1,35 +1,51 @@
-from flask import Flask, send_from_directory
-from flask_cors import CORS
+from flask import Flask, request, jsonify
 from flask_pymongo import PyMongo
-from dotenv import load_dotenv
+from flask_bcrypt import Bcrypt
+import jwt
+import datetime
 import os
+from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
 
 # Initialize Flask app
-app = Flask(__name__, static_folder='../frontend/build', static_url_path='')
-CORS(app)
+app = Flask(__name__)
+app.config['MONGO_URI'] = os.getenv('MONGO_URI')
+app.config['SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
 
-# Configure MongoDB connection
-app.config['MONGO_URI'] = os.getenv('DATABASE_URL')
+# Initialize extensions
 mongo = PyMongo(app)
+bcrypt = Bcrypt(app)
 
-# Import routes after initializing the app
-from backend.routes import api_blueprint
+# Routes
+@app.route('/register', methods=['POST'])
+def register():
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+    hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+    mongo.db.users.insert_one({'email': email, 'password': hashed_password})
+    return jsonify({'message': 'User registered successfully'})
 
-# Register routes
-app.register_blueprint(api_blueprint, url_prefix='/api')
-
-# Serve the React frontend
-@app.route('/')
-def serve():
-    return send_from_directory(app.static_folder, 'index.html')
-
-@app.route('/<path:path>')
-def static_proxy(path):
-    return send_from_directory(app.static_folder, path)
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+    user = mongo.db.users.find_one({'email': email})
+    
+    if user:
+        print('Stored Password Hash:', user['password'])
+        print('Provided Password:', password)
+    
+    if user and bcrypt.check_password_hash(user['password'], password):
+        token = jwt.encode({
+            'email': email,
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)
+        }, app.config['SECRET_KEY'], algorithm='HS256')
+        return jsonify({'token': token})
+    return jsonify({'message': 'Invalid credentials'}), 401
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(debug=True)
