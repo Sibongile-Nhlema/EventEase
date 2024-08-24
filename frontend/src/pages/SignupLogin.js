@@ -30,13 +30,13 @@ const SignupLogin = () => {
     const body = {
       email,
       password,
-      ...(role === 'participant' && {
+      ...(role === 'participant' && isSignUp && {
         name,
         phone,
         location,
         occupation,
-        company
-      })
+        company,
+      }),
     };
 
     const url = `http://localhost:5000/api/signup-login/${role}${isSignUp ? '' : '/login'}`;
@@ -55,12 +55,18 @@ const SignupLogin = () => {
       }
 
       const data = await response.json();
-      if (!isSignUp) {
-        localStorage.setItem('userToken', data.token); // Save JWT token to localStorage
-        navigate(`/dashboard/${role}`); // Redirect to the appropriate dashboard
+
+      if (isSignUp) {
+        alert('Registration successful! Redirecting to your dashboard...');
       } else {
-        alert('Registration successful! Please sign in.');
-        setIsSignUp(false);
+        localStorage.setItem('userToken', data.token); // Save JWT token to localStorage
+      }
+
+      // Redirect based on role
+      if (role === 'organizer') {
+        navigate('/admin/dashboard');
+      } else if (role === 'participant') {
+        navigate('/participant/dashboard');
       }
     } catch (error) {
       alert(error.message);
