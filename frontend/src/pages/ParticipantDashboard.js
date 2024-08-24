@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import '../styles/ParticipantDashboard.css';
 
 const ParticipantDashboard = () => {
-  const { role } = useParams();
+  // const { role } = useParams();
 
   return (
     <div className="dashboard">
