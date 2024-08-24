@@ -9,7 +9,7 @@ const SignupLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  
+
   // Additional state for participant fields
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -39,8 +39,10 @@ const SignupLogin = () => {
       })
     };
 
+    const url = `http://localhost:5000/api/signup-login/${role}${isSignUp ? '' : '/login'}`;
+
     try {
-      const response = await fetch(`http://your-api-url/${role}/${isSignUp ? 'signup' : 'login'}`, {
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -52,10 +54,14 @@ const SignupLogin = () => {
         throw new Error('Failed to authenticate');
       }
 
-      // On successful response, handle authentication (e.g., save token)
       const data = await response.json();
-      localStorage.setItem('userToken', data.token); // Save JWT token to localStorage
-      navigate(`/dashboard/${role}`); // Redirect to the appropriate dashboard
+      if (!isSignUp) {
+        localStorage.setItem('userToken', data.token); // Save JWT token to localStorage
+        navigate(`/dashboard/${role}`); // Redirect to the appropriate dashboard
+      } else {
+        alert('Registration successful! Please sign in.');
+        setIsSignUp(false);
+      }
     } catch (error) {
       alert(error.message);
     }

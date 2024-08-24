@@ -1,57 +1,41 @@
-from flask import Flask, request, jsonify
+from flask import Flask, send_from_directory
+from flask_cors import CORS
 from flask_pymongo import PyMongo
 from flask_bcrypt import Bcrypt
-import jwt
-import datetime
-import os
 from dotenv import load_dotenv
+import os
 
 # Load environment variables
 load_dotenv()
 
-# Initialize Flask app
-app = Flask(__name__)
-app.config['MONGO_URI'] = os.getenv('MONGO_URI')
-app.config['SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
+# Initialize Flask application
+app = Flask(__name__, static_folder='../frontend/build', static_url_path='')
+CORS(app)
 
-# Initialize extensions
+# Configure MongoDB connection
+app.config['MONGO_URI'] = os.getenv('DATABASE_URL')
 mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
 
-# Routes
-@app.route('/register', methods=['POST'])
-def register():
-    data = request.json
-    email = data.get('email')
-    password = data.get('password')
-    hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-    mongo.db.users.insert_one({'email': email, 'password': hashed_password})
-    return jsonify({'message': 'User registered successfully'})
+# Import and initialize routes
+from backend.routes import api_blueprint
+from backend.routes.auth import init_app as init_auth
 
-@app.route('/login', methods=['POST'])
-def login():
-    data = request.json
-    email = data.get('email')
-    password = data.get('password')
-    user = mongo.db.users.find_one({'email': email})
+# Initialize authentication routes
+init_auth(app)
 
-    if user:
-        print('Stored Password Hash:', user['password'])
-        print('Provided Password:', password)
+# Register API routes
+app.register_blueprint(api_blueprint, url_prefix='/api')
 
-    if user and bcrypt.check_password_hash(user['password'], password):
-        token = jwt.encode({
-            'email': email,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)
-        }, app.config['SECRET_KEY'], algorithm='HS256')
-        return jsonify({'token': token})
-    return jsonify({'message': 'Invalid credentials'}), 401
+# Serve the React frontend
+@app.route('/')
+def serve():
+    return send_from_directory(app.static_folder, 'index.html')
 
-@app.route('/logout', methods=['POST'])
-def logout():
-    # In a stateless JWT authentication, there's no need to invalidate tokens on the server side.
-    # Just removing the token on the client side is sufficient.
-    return jsonify({'message': 'Successfully logged out'})
+@app.route('/<path:path>')
+def static_proxy(path):
+    return send_from_directory(app.static_folder, path)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
