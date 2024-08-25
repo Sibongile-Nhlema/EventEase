@@ -79,3 +79,29 @@ body {
   padding: 20px;
   box-sizing: border-box;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.page-number {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 0 5px;
+  border-radius: 5px;
+  background-color: #f4f4f4;
+  transition: background-color 0.3s ease;
+}
+
+.page-number:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.page-number.active {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+}
