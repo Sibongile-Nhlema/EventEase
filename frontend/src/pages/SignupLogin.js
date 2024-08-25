@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../styles/SignupLogin.css';
 import Header from '../components/Header';
+import API_URL from '../apiConfig'; // Import the API URL from the configuration file
 
 const SignupLogin = () => {
   const { role } = useParams();
@@ -39,7 +40,7 @@ const SignupLogin = () => {
       }),
     };
 
-    const url = `http://localhost:5000/api/signup-login/${role}${isSignUp ? '' : '/login'}`;
+    const url = `${API_URL}/signup-login/${role}${isSignUp ? '' : '/login'}`; // Use the API URL from the config
 
     try {
       const response = await fetch(url, {
