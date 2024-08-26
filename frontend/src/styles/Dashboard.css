@@ -1,39 +1,30 @@
-/* Dashboard.css */
-
 .dashboard {
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 60px); /* Adjust height for full viewport minus header */
+  padding: 20px;
 }
 
 .dashboard-content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  margin-left: 250px; /* Adjust for sidebar width */
-  padding: 20px;
-  background-color: #f8f9fa; /* Light background color */
-}
-
-.dashboard-main {
-  flex: 1;
-  overflow-y: auto; /* Scrollable content if needed */
+  max-width: 1500px;
 }
 
 .dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(3000px, 1fr));
   gap: 20px;
 }
 
 .dashboard-item {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  background: white;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.dashboard-item h2 {
-  margin-top: 0;
+.dashboard-image {
+  width: 100%;
+  height: auto;
+}
+
+.dashboard-item canvas {
+  width: 100% !important;
+  height: auto !important;
 }

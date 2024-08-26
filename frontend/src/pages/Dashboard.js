@@ -6,55 +6,19 @@ const Dashboard = () => {
     <div className="dashboard">
       <div className="dashboard-content">
         <main className="dashboard-main">
-          <div className="dashboard-grid">
-            {/* Number of Events and Participants */}
-            <div className="dashboard-item">
-              <h2>Number of Events & Participants</h2>
-              <div className="chart-placeholder">[Chart Placeholder]</div>
-            </div>
-
-            {/* Sign-Ups & Registrations */}
-            <div className="dashboard-item">
-              <h2>Sign-Ups & Registrations</h2>
-              <div className="chart-placeholder">[Chart Placeholder]</div>
-            </div>
-
-            {/* Reminders, Updates, and Confirmations */}
-            <div className="dashboard-item">
-              <h2>Reminders, Updates & Confirmations Sent</h2>
-              <div className="chart-placeholder">[Chart Placeholder]</div>
-            </div>
-
-            {/* Event Attendance and Deregistration */}
-            <div className="dashboard-item">
-              <h2>Event Attendance & Deregistration</h2>
-              <div className="chart-placeholder">[Chart Placeholder]</div>
-            </div>
-
-            {/* Upcoming Events */}
-            <div className="dashboard-item">
-              <h2>Upcoming Events</h2>
-              <div className="chart-placeholder">[Chart Placeholder]</div>
-            </div>
-
-            {/* Past Events Summary */}
-            <div className="dashboard-item">
-              <h2>Past Events Summary</h2>
-              <div className="chart-placeholder">[Chart Placeholder]</div>
-            </div>
-
-            {/* Financial Insights */}
-            <div className="dashboard-item">
-              <h2>Financial Insights</h2>
-              <div className="chart-placeholder">[Chart Placeholder]</div>
-            </div>
-
-            {/* Participant Feedback */}
-            <div className="dashboard-item">
-              <h2>Participant Feedback</h2>
-              <div className="chart-placeholder">[Chart Placeholder]</div>
-            </div>
-          </div>
+          {/* MongoDB Embedded Dashboard */}
+          <iframe
+            style={{
+              background: '#F1F5F4',
+              border: 'none',
+              borderRadius: '2px',
+              boxShadow: '0 2px 10px 0 rgba(70, 76, 79, .2)',
+              width: '100vw',
+              height: '100vh',
+            }}
+            src="https://charts.mongodb.com/charts-bugtrackerdata-opggjra/embed/dashboards?id=66cceb17-08dc-4e86-8835-6f2d6e6a844d&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed"
+            title="MongoDB Embedded Dashboard"
+          ></iframe>
         </main>
       </div>
     </div>
