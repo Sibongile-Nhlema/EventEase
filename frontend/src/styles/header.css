@@ -1,15 +1,24 @@
 .header {
-    background-color: #282c34;
-    color: white;
-    padding: 10px;
-    flex-shrink: 0;
-  }
-  .header nav a {
-    color: white;
-    margin: 0 10px;
-    text-decoration: none;
-  }
-  .header nav a:hover {
-    text-decoration: underline;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #282c34;
+  color: white;
+  padding: 10px;
+  flex-shrink: 0;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+}
+
+.header nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.header nav a:hover {
+  text-decoration: underline;
+}

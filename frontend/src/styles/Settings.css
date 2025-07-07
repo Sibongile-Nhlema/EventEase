@@ -1,0 +1,81 @@
+.settings-container {
+  max-width: 1200px; /* Adjusted for more space */
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.settings-content {
+  display: flex;
+  gap: 40px; /* Increased space between sections */
+}
+
+.settings-section {
+  flex: 1; /* Flex grow to fill available space */
+  min-width: 700px; /* Ensure sections are wide enough */
+}
+
+.profile-section,
+.display-section {
+  border: 1px solid #ddd; /* Light border around sections */
+  border-radius: 8px; /* Rounded corners for sections */
+  padding: 20px;
+  background-color: #f9f9f9; /* Light background color for sections */
+}
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Increased space between form elements */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+  padding: 12px; /* Increased padding for better visibility */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%; /* Full width of the container */
+}
+
+.save-settings-btn {
+  padding: 14px 24px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px; /* Spacing above the button */
+}
+
+.save-settings-btn:hover {
+  background-color: #0056b3;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.admin-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
